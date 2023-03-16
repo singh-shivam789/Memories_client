@@ -1,0 +1,25 @@
+.rightbarFriend {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.rightbarProfileImgContainer {
+    margin-right: 10px;
+    position: relative;
+}
+
+.rightbarFriendstatus {
+    width: 12px;
+    height: 12px;
+    position: absolute;
+    border-radius: 50%;
+    border: 2px solid white;
+    background-color: limegreen;
+    top: -2px;
+    right: 0;
+}
+
+.rightbarFriendName {
+    font-weight: 500;
+}
