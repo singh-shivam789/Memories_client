@@ -35,7 +35,7 @@ function Post({ post }) {
   }, [post, user._id]);
 
   const postHandler = async () => {
-    let res = await axios.post(`/posts/${post._id}`, { userId: user._id });
+    await axios.post(`/posts/${post._id}`, { userId: user._id });
     window.location.reload();
   };
 

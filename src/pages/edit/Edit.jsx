@@ -6,7 +6,7 @@ import { useHistory, useParams } from "react-router-dom";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import { AuthContext } from "../../context/AuthContext";
 function Edit() {
-  const { dispatch, user: currentUser } = useContext(AuthContext);
+  const { dispatch } = useContext(AuthContext);
   const { userId } = useParams();
 
   const [user, setUser] = useState(null);

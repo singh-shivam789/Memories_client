@@ -50,7 +50,7 @@ function Profile() {
     });
     setTimeout(async () => {
       try {
-        let res = await axios.delete(`/users/${User._id}`);
+        await axios.delete(`/users/${User._id}`);
         window.location.reload();
       } catch (error) {}
     }, 3000);
