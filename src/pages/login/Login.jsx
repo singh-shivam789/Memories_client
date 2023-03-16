@@ -23,7 +23,7 @@ function Login() {
     };
     dispatch({ type: "LOGIN_START" });
     toast
-      .promise(axios.post("auth/login", userCredentials), {
+      .promise(axios.post("https://memories-server-8vu8.onrender.com/auth/login", userCredentials), {
         pending: "Logging in...",
       })
       .then((res) => {

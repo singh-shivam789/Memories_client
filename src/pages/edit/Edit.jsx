@@ -23,7 +23,7 @@ function Edit() {
   const history = useHistory();
   useEffect(() => {
     const getUser = async () => {
-      const res = await axios.get("/users?userId=" + userId);
+      const res = await axios.get("https://memories-server-8vu8.onrender.com/users?userId=" + userId);
       setUser(res.data.user);
     };
     getUser();
@@ -55,12 +55,12 @@ function Edit() {
       data.append("file", file);
       userData.profilePicture = fileName;
       try {
-        await axios.post("/users/upload", data);
+        await axios.post("https://memories-server-8vu8.onrender.com/users/upload", data);
       } catch (err) {}
     }
 
     toast
-      .promise(axios.put(`/users/${user._id}`, userData), {
+      .promise(axios.put(`https://memories-server-8vu8.onrender.com/users/${user._id}`, userData), {
         pending: "Trying to update your info...",
       })
       .then((res) => {

@@ -45,7 +45,7 @@ function Register() {
         password: password.current.value,
       };
       toast
-        .promise(axios.post(`/auth/register`, userData), {
+        .promise(axios.post(`https://memories-server-8vu8.onrender.com/auth/register`, userData), {
           pending: "Trying to sign you up...",
         })
         .then((res) => {
@@ -95,12 +95,12 @@ function Register() {
       data.append("file", file);
       userData.profilePicture = fileName;
       try {
-        await axios.post("/users/upload", data);
+        await axios.post("https://memories-server-8vu8.onrender.com/users/upload", data);
       } catch (err) {
       }
     }
     toast
-      .promise(axios.put(`/users/${user._id}`, userData), {
+      .promise(axios.put(`https://memories-server-8vu8.onrender.com/users/${user._id}`, userData), {
         pending: "Trying to update your info...",
         error: "Something went wrong ☹️",
       })

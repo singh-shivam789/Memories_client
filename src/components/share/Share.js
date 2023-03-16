@@ -27,11 +27,11 @@ function Share() {
       data.append("file", file);
       newPost.img = fileName;
       try {
-        await axios.post("/posts/upload", data);
+        await axios.post("https://memories-server-8vu8.onrender.com/posts/upload", data);
       } catch (err) {}
     }
     try {
-      await axios.post("/posts", newPost);
+      await axios.post("https://memories-server-8vu8.onrender.com/posts", newPost);
       window.location.reload();
     } catch (err) {}
   };

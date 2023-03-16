@@ -34,7 +34,7 @@ function Rightbar({ user }) {
   useEffect(() => {
     if(currentUser) setFollowed(currentUser.followings.includes(user?._id));
     const getFriends = async () => {
-      const friendsList = await axios.get("/users/friends/" + user._id);
+      const friendsList = await axios.get("https://memories-server-8vu8.onrender.com/users/friends/" + user._id);
       setFriends(friendsList.data);
       setFetchFriends(true);
     };
@@ -65,12 +65,12 @@ function Rightbar({ user }) {
     const followUnfollowHandler = async () => {
       try {
         if (!followed) {
-          await axios.put("/users/" + user._id + "/follow", {
+          await axios.put("https://memories-server-8vu8.onrender.com/users/" + user._id + "/follow", {
             userId: currentUser._id,
           });
           dispatch({ type: "FOLLOW", payload: user._id });
         } else {
-          await axios.put("/users/" + user._id + "/unfollow", {
+          await axios.put("https://memories-server-8vu8.onrender.com/users/" + user._id + "/unfollow", {
             userId: currentUser._id,
           });
           dispatch({ type: "UNFOLLOW", payload: user._id });
