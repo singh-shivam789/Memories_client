@@ -1,16 +1,12 @@
-import React, { useContext, useRef, memo } from "react";
-import "./login.css";
-import { AuthContext } from "../../context/AuthContext";
-import { CircularProgress } from "@material-ui/core";
-import { Link, useHistory } from "react-router-dom";
+import React, {useRef, memo } from "react";
+import { useHistory } from "react-router-dom";
 import { useState } from "react";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import VisibilityOffIcon from "@material-ui/icons/VisibilityOff";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
-function Login() {
-  const { isFetching, dispatch } = useContext(AuthContext);
+function ForgotPassword() {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const history = useHistory();
   let email = useRef(),
@@ -21,10 +17,8 @@ function Login() {
       email: email.current.value,
       password: password.current.value,
     };
-    dispatch({ type: "LOGIN_START" });
     toast
-      .promise(axios.post("https://memories-server-8vu8.onrender.com/api/auth/login", userCredentials), {
-        pending: "Logging in...",
+      .promise(axios.post("http://localhost:5000/api/auth/forgotPassword", userCredentials), {
       })
       .then((res) => {
         if (res.data.message === "not found") {
@@ -38,17 +32,10 @@ function Login() {
             progress: undefined,
             theme: "dark",
           });
-          setTimeout(() => {
-            dispatch({ type: "RESET" });
-          }, 2000);
         } else {
-          setTimeout(() => {
-            window.localStorage.setItem("user", JSON.stringify(res.data));
-            dispatch({ type: "LOGIN_SUCCESS", payload: res.data });
-          }, 2000);
-          toast.success("Logged in successfully 😊", {
+          toast.success("Password set successfully 😊", {
             position: "top-right",
-            autoClose: 4000,
+            autoClose: 3000,
             hideProgressBar: false,
             closeOnClick: true,
             pauseOnHover: true,
@@ -56,6 +43,9 @@ function Login() {
             progress: undefined,
             theme: "light",
           });
+          setTimeout(() => {
+            history.push("/");
+          }, 3000)
         }
       })
       .catch((err) => {
@@ -70,23 +60,20 @@ function Login() {
           theme: "dark",
         });
         password.current.value = "";
-        setTimeout(() => {
-          dispatch({ type: "LOGIN_FAILURE", payload: err });
-        }, 2000);
+        history.push("/error");
       });
   };
-
   return (
     <div className="login">
       <div className="loginWrapper">
         <div className="loginLeft">
           <h3 className="loginLogo">Memories</h3>
           <div className="loginDesc">
-            Connect with friends, create and share memories.
+            Reset Password
           </div>
         </div>
-        <div className="loginRight">
-          <form onSubmit={formHandler} className="loginBox">
+        <div className="loginRightForgotPassword">
+          <form onSubmit={formHandler} className="loginBoxForgotPassword">
             <input
               required
               ref={email}
@@ -107,31 +94,16 @@ function Login() {
               className="loginInput"
             />
             <button
-              disabled={isFetching}
               type="submit"
               className="loginPageLoginBtn"
             >
-              {isFetching ? <CircularProgress color={"inherit"} /> : "Log In"}
+            {"Reset Password"}
             </button>
-            <span onClick={() => {
-              history.push("/forgotPassword")
-            }} className="loginForgot">Forgot Password?</span>
-            <Link
-              disabled={isFetching}
-              className="loginPageRegBtn"
-              to="/register"
-            >
-              {isFetching ? (
-                <CircularProgress color="white" />
-              ) : (
-                "Create a new Account"
-              )}
-            </Link>
             <div
               onClick={() => {
                 setIsPasswordVisible(!isPasswordVisible);
               }}
-              className="loginPasswordVisibilityIcon"
+              className="forgotPasswordPasswordVisibilityIcon"
             >
               {isPasswordVisible ? <VisibilityIcon /> : <VisibilityOffIcon />}
             </div>
@@ -143,4 +115,4 @@ function Login() {
   );
 }
 
-export default memo(Login);
+export default memo(ForgotPassword);

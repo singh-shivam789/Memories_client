@@ -17,21 +17,12 @@
 }
 
 .topbarLeft {
-  flex: 3;
+  flex: 8;
   cursor: pointer;
   font-size: large;
   margin-left: 1%;
   color: white;
   font-weight: 800;
-}
-
-.topbarCentre {
-  margin-right: 1%;
-  flex: 5;
-  background-color: white;
-  color: black;
-  border: 0.1px cornflowerblue solid;
-  border-radius: 20px;
 }
 
 .searchbar {
@@ -60,7 +51,7 @@
 }
 
 .topbarRight {
-  flex: 4;
+  flex: 1;
   height: 100%;
   width: 80%;
   align-items: center;

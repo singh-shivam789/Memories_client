@@ -21,6 +21,13 @@
   justify-content: center;
 }
 
+.loginRightForgotPassword{
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 .loginLogo {
   font-size: 50px;
   font-weight: 800;
@@ -34,6 +41,16 @@
 
 .loginBox {
   height: 300px;
+  padding: 20px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  justify-content: space-between;
+}
+
+.loginBoxForgotPassword {
+  height: 200px;
   padding: 20px;
   background-color: white;
   display: flex;
@@ -115,5 +132,23 @@
 }
 
 .loginPasswordVisibilityIcon:active {
+  transform: scale(1.1);
+}
+
+
+.forgotPasswordPasswordVisibilityIcon {
+  position: absolute;
+  cursor: pointer;
+  top: 48.5%;
+  left: 81.5%;
+  opacity: 0.5;
+  transition: 0.5 all ease-in-out;
+}
+
+.forgotPasswordPasswordVisibilityIcon:hover {
+  opacity: 0.8;
+}
+
+.forgotPasswordPasswordVisibilityIcon:active {
   transform: scale(1.1);
 }

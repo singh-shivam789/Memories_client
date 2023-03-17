@@ -12,6 +12,7 @@ import Profile from "./pages/profile/Profile";
 import Register from "./pages/register/Register";
 import ErrorPage from "./pages/error/ErrorPage";
 import Edit from "./pages/edit/Edit";
+import ForgotPassword from "./pages/forgotPassword/forgotPassword";
 import { AuthContext } from "./context/AuthContext";
 
 function App() {
@@ -21,6 +22,9 @@ function App() {
       <Switch>
         <Route exact path="/">
           {user ? <Home /> : <Login />}
+        </Route>
+        <Route path={"/forgotPassword"}>
+          <ForgotPassword/>
         </Route>
         <Route path="/login">{user ? <Redirect to="/" /> : <Login />}</Route>
         <Route path="/profile/:username">
