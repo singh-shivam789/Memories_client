@@ -52,6 +52,7 @@ function Profile() {
       try {
         await axios.delete(`https://memories-server-8vu8.onrender.com/api/users/${User._id}`);
         window.localStorage.clear();
+        window.location.reload();
       } catch (error) {}
     }, 3000);
   };
