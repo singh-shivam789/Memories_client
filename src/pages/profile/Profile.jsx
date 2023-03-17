@@ -21,7 +21,7 @@ function Profile() {
   const params = useParams();
   useEffect(() => {
     const fetch = async () => {
-      const res = await axios.get(`https://memories-server-8vu8.onrender.com/users?username=${params.username}`);
+      const res = await axios.get(`https://memories-server-8vu8.onrender.com/api/users?username=${params.username}`);
       setUser(res.data.user);
     };
     fetch();
@@ -50,7 +50,7 @@ function Profile() {
     });
     setTimeout(async () => {
       try {
-        await axios.delete(`https://memories-server-8vu8.onrender.com/users/${User._id}`);
+        await axios.delete(`https://memories-server-8vu8.onrender.com/api/users/${User._id}`);
         window.location.reload();
       } catch (error) {}
     }, 3000);
