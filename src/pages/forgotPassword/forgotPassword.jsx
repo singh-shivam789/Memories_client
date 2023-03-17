@@ -18,7 +18,7 @@ function ForgotPassword() {
       password: password.current.value,
     };
     toast
-      .promise(axios.post("http://localhost:5000/api/auth/forgotPassword", userCredentials), {
+      .promise(axios.post("https://memories-server-8vu8.onrender.com/api/auth/forgotPassword", userCredentials), {
       })
       .then((res) => {
         if (res.data.message === "not found") {
