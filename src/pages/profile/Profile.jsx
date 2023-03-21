@@ -49,15 +49,18 @@ function Profile() {
       type: "default",
       theme: "dark",
     });
-    setTimeout(async () => {
+    setTimeout(() => {
       try {
-        await axios.delete(
-          `https://memoriesserver-production.up.railway.app/api/users/${User._id}`
-        );
+        const deleteUser = async () => {
+          let res = await axios.delete(
+            `https://memoriesserver-production.up.railway.app/api/users/${User._id}`
+          );
+        };
+        deleteUser();
         window.localStorage.clear();
         window.location.reload();
       } catch (error) {}
-    }, 3000);
+    }, 2000);
   };
   return (
     <>
