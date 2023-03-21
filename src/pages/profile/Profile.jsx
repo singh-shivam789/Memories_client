@@ -52,7 +52,7 @@ function Profile() {
     setTimeout(() => {
       try {
         const deleteUser = async () => {
-          let res = await axios.delete(
+          await axios.delete(
             `https://memoriesserver-production.up.railway.app/api/users/${User._id}`
           );
         };
