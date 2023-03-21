@@ -27,11 +27,17 @@ function Share() {
       data.append("file", file);
       newPost.img = fileName;
       try {
-        await axios.post("https://memories-server-8vu8.onrender.com/api/posts/upload", data);
+        await axios.post(
+          "https://memoriesserver-production.up.railway.app/api/posts/upload",
+          data
+        );
       } catch (err) {}
     }
     try {
-      await axios.post("https://memories-server-8vu8.onrender.com/api/posts", newPost);
+      await axios.post(
+        "https://memoriesserver-production.up.railway.app/api/posts",
+        newPost
+      );
       window.location.reload();
     } catch (err) {}
   };

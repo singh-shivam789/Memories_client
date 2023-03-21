@@ -45,9 +45,15 @@ function Register() {
         password: password.current.value,
       };
       toast
-        .promise(axios.post(`https://memories-server-8vu8.onrender.com/api/auth/register`, userData), {
-          pending: "Trying to sign you up...",
-        })
+        .promise(
+          axios.post(
+            `https://memoriesserver-production.up.railway.app/api/auth/register`,
+            userData
+          ),
+          {
+            pending: "Trying to sign you up...",
+          }
+        )
         .then((res) => {
           if (res.data.code === 11000) {
             toast.warn(`Username or Email already in use!`, {
@@ -75,8 +81,7 @@ function Register() {
             setUser(res.data.user);
           }
         })
-        .catch((err) => {
-        });
+        .catch((err) => {});
     }
   };
 
@@ -95,15 +100,23 @@ function Register() {
       data.append("file", file);
       userData.profilePicture = fileName;
       try {
-        await axios.post("https://memories-server-8vu8.onrender.com/api/users/upload", data);
-      } catch (err) {
-      }
+        await axios.post(
+          "https://memoriesserver-production.up.railway.app/api/users/upload",
+          data
+        );
+      } catch (err) {}
     }
     toast
-      .promise(axios.put(`https://memories-server-8vu8.onrender.com/api/users/${user._id}`, userData), {
-        pending: "Trying to update your info...",
-        error: "Something went wrong ☹️",
-      })
+      .promise(
+        axios.put(
+          `https://memoriesserver-production.up.railway.app/api/users/${user._id}`,
+          userData
+        ),
+        {
+          pending: "Trying to update your info...",
+          error: "Something went wrong ☹️",
+        }
+      )
       .then((res) => {
         toast.success("Successfully updated your info", {
           position: "top-right",

@@ -11,8 +11,8 @@ function Feed({ username }) {
   useEffect(() => {
     const fetch = async () => {
       let data = username
-        ? await Axios.get("https://memories-server-8vu8.onrender.com/api/posts/profile/" + username)
-        : await Axios.get("https://memories-server-8vu8.onrender.com/api/posts/all");
+        ? await Axios.get("https://memoriesserver-production.up.railway.app/api/posts/profile/" + username)
+        : await Axios.get("https://memoriesserver-production.up.railway.app/api/posts/all");
       setPosts(
         data.data.sort((a, b) => {
           return new Date(b.createdAt) - new Date(a.createdAt);

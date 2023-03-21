@@ -16,14 +16,21 @@ function Post({ post }) {
   let [User, setUser] = useState({});
   useEffect(() => {
     const fetchUser = async () => {
-      let user = await Axios.get(`https://memories-server-8vu8.onrender.com/api/users?userId=${post.userId}`);
+      let user = await Axios.get(
+        `https://memoriesserver-production.up.railway.app/api/users?userId=${post.userId}`
+      );
       setUser(user.data.user);
     };
     fetchUser();
   }, [post]);
   const likeHandler = async () => {
     try {
-      await axios.put("https://memories-server-8vu8.onrender.com/api/posts/" + post._id + "/like", { userId: user._id });
+      await axios.put(
+        "https://memoriesserver-production.up.railway.app/api/posts/" +
+          post._id +
+          "/like",
+        { userId: user._id }
+      );
     } catch (err) {
       window.alert(err);
     }
@@ -35,7 +42,10 @@ function Post({ post }) {
   }, [post, user._id]);
 
   const postHandler = async () => {
-    await axios.post(`https://memories-server-8vu8.onrender.com/api/posts/${post._id}`, { userId: user._id });
+    await axios.post(
+      `https://memoriesserver-production.up.railway.app/api/posts/${post._id}`,
+      { userId: user._id }
+    );
     window.location.reload();
   };
 

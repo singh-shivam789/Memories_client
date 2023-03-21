@@ -1,4 +1,4 @@
-import React, {useRef, memo } from "react";
+import React, { useRef, memo } from "react";
 import { useHistory } from "react-router-dom";
 import { useState } from "react";
 import VisibilityIcon from "@material-ui/icons/Visibility";
@@ -18,8 +18,13 @@ function ForgotPassword() {
       password: password.current.value,
     };
     toast
-      .promise(axios.post("https://memories-server-8vu8.onrender.com/api/auth/forgotPassword", userCredentials), {
-      })
+      .promise(
+        axios.post(
+          "https://memoriesserver-production.up.railway.app/api/auth/forgotPassword",
+          userCredentials
+        ),
+        {}
+      )
       .then((res) => {
         if (res.data.message === "not found") {
           toast.warning("Cannot find any user with this email 😕", {
@@ -45,7 +50,7 @@ function ForgotPassword() {
           });
           setTimeout(() => {
             history.push("/");
-          }, 3000)
+          }, 3000);
         }
       })
       .catch((err) => {
@@ -68,9 +73,7 @@ function ForgotPassword() {
       <div className="loginWrapper">
         <div className="loginLeft">
           <h3 className="loginLogo">Memories</h3>
-          <div className="loginDesc">
-            Reset Password
-          </div>
+          <div className="loginDesc">Reset Password</div>
         </div>
         <div className="loginRightForgotPassword">
           <form onSubmit={formHandler} className="loginBoxForgotPassword">
@@ -93,11 +96,8 @@ function ForgotPassword() {
               type={isPasswordVisible ? "text" : "password"}
               className="loginInput"
             />
-            <button
-              type="submit"
-              className="loginPageLoginBtn"
-            >
-            {"Reset Password"}
+            <button type="submit" className="loginPageLoginBtn">
+              {"Reset Password"}
             </button>
             <div
               onClick={() => {

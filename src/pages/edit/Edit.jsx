@@ -23,7 +23,10 @@ function Edit() {
   const history = useHistory();
   useEffect(() => {
     const getUser = async () => {
-      const res = await axios.get("https://memories-server-8vu8.onrender.com/api/users?userId=" + userId);
+      const res = await axios.get(
+        "https://memoriesserver-production.up.railway.app/api/users?userId=" +
+          userId
+      );
       setUser(res.data.user);
     };
     getUser();
@@ -55,14 +58,23 @@ function Edit() {
       data.append("file", file);
       userData.profilePicture = fileName;
       try {
-        await axios.post("https://memories-server-8vu8.onrender.com/api/users/upload", data);
+        await axios.post(
+          "https://memoriesserver-production.up.railway.app/api/users/upload",
+          data
+        );
       } catch (err) {}
     }
 
     toast
-      .promise(axios.put(`https://memories-server-8vu8.onrender.com/api/users/${user._id}`, userData), {
-        pending: "Trying to update your info...",
-      })
+      .promise(
+        axios.put(
+          `https://memoriesserver-production.up.railway.app/api/users/${user._id}`,
+          userData
+        ),
+        {
+          pending: "Trying to update your info...",
+        }
+      )
       .then((res) => {
         toast.success("Successfully updated your info...", {
           position: "top-right",
@@ -78,7 +90,7 @@ function Edit() {
         localStorage.setItem("user", JSON.stringify(res.data.user));
         setTimeout(() => {
           history.push("/profile/" + res.data.user.username);
-        }, 2000)
+        }, 2000);
       })
       .catch((err) => {
         toast.error(err.response.data, {

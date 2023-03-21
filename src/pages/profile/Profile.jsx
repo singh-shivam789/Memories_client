@@ -17,11 +17,12 @@ function Profile() {
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
   const [User, setUser] = useState({});
 
-
   const params = useParams();
   useEffect(() => {
     const fetch = async () => {
-      const res = await axios.get(`https://memories-server-8vu8.onrender.com/api/users?username=${params.username}`);
+      const res = await axios.get(
+        `https://memoriesserver-production.up.railway.app/api/users?username=${params.username}`
+      );
       setUser(res.data.user);
     };
     fetch();
@@ -50,7 +51,9 @@ function Profile() {
     });
     setTimeout(async () => {
       try {
-        await axios.delete(`https://memories-server-8vu8.onrender.com/api/users/${User._id}`);
+        await axios.delete(
+          `https://memoriesserver-production.up.railway.app/api/users/${User._id}`
+        );
         window.localStorage.clear();
         window.location.reload();
       } catch (error) {}

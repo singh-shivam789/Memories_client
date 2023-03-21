@@ -32,9 +32,12 @@ function Rightbar({ user }) {
   const [followed, setFollowed] = useState(false);
 
   useEffect(() => {
-    if(currentUser) setFollowed(currentUser.followings.includes(user?._id));
+    if (currentUser) setFollowed(currentUser.followings.includes(user?._id));
     const getFriends = async () => {
-      const friendsList = await axios.get("https://memories-server-8vu8.onrender.com/api/users/friends/" + user._id);
+      const friendsList = await axios.get(
+        "https://memoriesserver-production.up.railway.app/api/users/friends/" +
+          user._id
+      );
       setFriends(friendsList.data);
       setFetchFriends(true);
     };
@@ -65,20 +68,28 @@ function Rightbar({ user }) {
     const followUnfollowHandler = async () => {
       try {
         if (!followed) {
-          await axios.put("https://memories-server-8vu8.onrender.com/api/users/" + user._id + "/follow", {
-            userId: currentUser._id,
-          });
+          await axios.put(
+            "https://memoriesserver-production.up.railway.app/api/users/" +
+              user._id +
+              "/follow",
+            {
+              userId: currentUser._id,
+            }
+          );
           dispatch({ type: "FOLLOW", payload: user._id });
         } else {
-          await axios.put("https://memories-server-8vu8.onrender.com/api/users/" + user._id + "/unfollow", {
-            userId: currentUser._id,
-          });
+          await axios.put(
+            "https://memoriesserver-production.up.railway.app/api/users/" +
+              user._id +
+              "/unfollow",
+            {
+              userId: currentUser._id,
+            }
+          );
           dispatch({ type: "UNFOLLOW", payload: user._id });
         }
         setFollowed(!followed);
-      
-      } catch (error) {
-      }
+      } catch (error) {}
     };
 
     return (
@@ -116,7 +127,9 @@ function Rightbar({ user }) {
             </div>
             <div className="rightbarInfoItem">
               <span className="rightbarInfoKey">Relationship:</span>
-              <span className="rightbarInfoValue">{user.relationship || "-"}</span>
+              <span className="rightbarInfoValue">
+                {user.relationship || "-"}
+              </span>
             </div>
           </div>
         </div>
@@ -128,7 +141,7 @@ function Rightbar({ user }) {
             friends.map((friend) => {
               return (
                 <Link
-                key={friend._id}
+                  key={friend._id}
                   style={{ textDecoration: "none" }}
                   to={`/profile/${friend.username}`}
                 >

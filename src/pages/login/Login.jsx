@@ -23,9 +23,15 @@ function Login() {
     };
     dispatch({ type: "LOGIN_START" });
     toast
-      .promise(axios.post("https://memories-server-8vu8.onrender.com/api/auth/login", userCredentials), {
-        pending: "Logging in...",
-      })
+      .promise(
+        axios.post(
+          "https://memoriesserver-production.up.railway.app/api/auth/login",
+          userCredentials
+        ),
+        {
+          pending: "Logging in...",
+        }
+      )
       .then((res) => {
         if (res.data.message === "not found") {
           toast.warning("Cannot find any user with this email 😕", {
@@ -113,9 +119,14 @@ function Login() {
             >
               {isFetching ? <CircularProgress color={"inherit"} /> : "Log In"}
             </button>
-            <span onClick={() => {
-              history.push("/forgotPassword")
-            }} className="loginForgot">Forgot Password?</span>
+            <span
+              onClick={() => {
+                history.push("/forgotPassword");
+              }}
+              className="loginForgot"
+            >
+              Forgot Password?
+            </span>
             <Link
               disabled={isFetching}
               className="loginPageRegBtn"

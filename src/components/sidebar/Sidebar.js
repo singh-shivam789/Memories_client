@@ -18,7 +18,9 @@ function Sidebar() {
   let [Users, setUsers] = useState([]);
   useEffect(() => {
     const fetchUsers = async () => {
-      let res = await axios.get("https://memories-server-8vu8.onrender.com/api/users/all");
+      let res = await axios.get(
+        "https://memoriesserver-production.up.railway.app/api/users/all"
+      );
       setUsers(res.data);
     };
     fetchUsers();
