@@ -88,10 +88,10 @@ function Register() {
   const userDescSubmitHandler = async function (event) {
     event.preventDefault();
     const userData = {
-      desc: desc.current.value,
-      from: from.current.value,
-      city: city.current.value,
-      relationship: relationship.current.value,
+      desc: desc.current.value.trim(),
+      from: from.current.value.trim(),
+      city: city.current.value.trim(),
+      relationship: relationship.current.value.trim(),
     };
     if (file) {
       const data = new FormData();
