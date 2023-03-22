@@ -40,9 +40,9 @@ function Register() {
       toast.warn("Both passwords must be same!");
     } else {
       const userData = {
-        username: username.current.value,
-        email: email.current.value,
-        password: password.current.value,
+        username: username.current.value.trim(),
+        email: email.current.value.trim(),
+        password: password.current.value.trim(),
       };
       toast
         .promise(
